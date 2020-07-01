@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사용자의 요청정보 출력</title>
+<title>requestResult에서 forward2로 전송 확인</title>
 </head>
 <body>
-	<h1>전송 결과</h1>
-	<hr>
-	<table border="1">
+		<table border="1">
 		<tr>
 			<td>이름</td>
 			<td><%= request.getParameter("username") %></td>
@@ -52,7 +49,5 @@
 			<td> <%= request.getProtocol() %> </td>
 		</tr>
 	</table>
-	
-	<jsp:forward page="forward.jsp"/>
 </body>
 </html>

@@ -9,18 +9,18 @@
 </head>
 <body>
  <header>
-        <h1>회원관리 프로그램</h1>
+        <h1>회원가입 페이지</h1>
     </header>
     <div id="content">
         <div id="reg">
             <h2 class="title">회원 저장</h2>
-            <form action="memberResult.jsp" method="post">
+            <form action="memberExam.jsp" method="post">
 	            <label>아이디</label>
-	            <input type="text" name="uid" placeholder="아이디" required>
+	            <input type="text" name="userId" placeholder="아이디" required>
 	            <label>비밀번호</label>
-	            <input type="password" name="pw" placeholder="비밀번호" required>
+	            <input type="password" name="userPw" placeholder="비밀번호" required>
 	            <label>이름</label>
-	            <input type="text" name="uname" placeholder="이름" required>
+	            <input type="text" name="userName" placeholder="이름" required>
 	            <input type="submit" value="저장">
             </form>
 		</div>
