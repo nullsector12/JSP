@@ -14,7 +14,7 @@
     <div id="content">
         <div id="reg">
             <h2 class="title">회원 저장</h2>
-            <form action="memberExam.jsp" method="post">
+            <form>
 	            <label>아이디</label>
 	            <input type="text" name="userId" placeholder="아이디" required>
 	            <label>비밀번호</label>
