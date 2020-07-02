@@ -5,6 +5,7 @@
 	/* Cookie cookie = new Cookie("uname", ""); 
 	cookie.setMaxAge(0); */
 	
+	response.addCookie(CookieBox.createCookie("uid", "", "/web/", 60));
 	response.addCookie(CookieBox.createCookie("uname", "", "/web/cookie", 0));
 	
 %>

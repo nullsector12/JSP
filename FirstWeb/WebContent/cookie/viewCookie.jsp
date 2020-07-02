@@ -35,6 +35,7 @@
 	
 	<a href="editCookie.jsp">쿠키값 수정하기</a> <br>
 	<a href="deleteCookie.jsp">쿠키 삭제</a>
+	<a href="makeCookie.jsp">쿠키 만들기</a>
 
 </body>
 </html>
