@@ -13,7 +13,7 @@
 	
 	<div>
 		<h1>회원가입</h1>
-		    <form action="loginForm.jsp" method="post">
+		    <form action="setAttributeAccount.jsp" method="post">
 	            <label>아이디</label>
 	            <input type="text" name="userId" placeholder="아이디" id="userId" required>
 	            <label>비밀번호</label>

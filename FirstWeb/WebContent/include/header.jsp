@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<header>
-	<h1> Include 지시어 테스트 </h1>
-	<hr>
-	<p>
-		[게임] [쇼핑] [뉴스] [프로그래밍] [맛집]
-	</p>
-</header>
+<h1 id="header">Open Project</h1>
+<ul id="nav">
+	<li><a href="<%= request.getContextPath() %>/Member/memberRegForm.jsp">회원가입</a></li>
+	<li><a href="<%= request.getContextPath() %>/Member/sessionloginForm.jsp">로그인</a></li>
+	<li><a href="<%= request.getContextPath() %>/Member/myPage.jsp">마이페이지</a></li>
+	<%-- <li><a href="<%= request.getContextPath() %>/guestBook/glist.jsp">방명록(비회원)</a></li>
+	<li><a href="<%= request.getContextPath() %>/board/mlist.jsp">방명록(회원)</a></li> --%>
+</ul>

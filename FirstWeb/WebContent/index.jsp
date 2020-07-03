@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<% String userName = (String)session.getAttribute("userName"); %>
-<%--
-	// 로그아웃 : session 객체 소멸
-	session.invalidate();
-
-	response.sendRedirect("../index.jsp");
---%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login or logout</title>
+<title>Index</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/default.css">
+<style></style>
 </head>
 <body>
-	현재 접속중인 사용자의 이름 : <%= userName %>
+	<%@ include file="/include/header.jsp" %>
+	
+	<div>
+		index
+	</div>
+	
+	<%-- <%@ include file="/include/footer.jsp" %> --%>
 </body>
 </html>
