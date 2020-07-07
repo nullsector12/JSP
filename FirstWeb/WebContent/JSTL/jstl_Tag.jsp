@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+	request.setAttribute("price", 10000);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +12,41 @@
 <title>JSTL TAG</title>
 </head>
 <body>
-
+	<c:set var="now" value="<% new java.util.Date(); %>"/>
+	
+	
+	날짜와 시간 동시 표현 <br>
+	both : <fmt:formatDate value="${now}" type="both"/> <br>
+	both (full) : <fmt:formatDate value="${now}" type="both" dateStyle="full" timeStyle="full"/> <br>
+	both (short) : <fmt:formatDate value="${now}" type="both" dateStyle="short" timeStyle="short"/> <br>
+	
+	
+	
+	시간 표현 <br>
+	<fmt:formatDate value="${now}" type="time"/> <br>
+	short : <fmt:formatDate value="${now}" type="time" timeStyle="short"/> <br>
+	full : <fmt:formatDate value="${now}" type="time" timeStyle="full"/>
+	
+	<br>
+	
+	날짜표현 <br>
+	<fmt:formatDate value="${now}" type="date"/> <br>
+	short : <fmt:formatDate value="${now}" type="date" dateStyle="short"/> <br>
+	full : <fmt:formatDate value="${now}" type="date" dateStyle="full"/>
+	
+	숫자 타입 : <fmt:formatNumber value="${price}" type="number"/> / 
+	<fmt:formatNumber value="${price}" type="number" var="numberType"/>
+	
+	${numberType}
+	
+	<br>
+	통화 (현재 나라 기본값) : <fmt:formatNumber value="${price}" type="currency"/> / 
+	통화 (직접 $ 설정) : <fmt:formatNumber value="${price}" type="currency" currencySymbol="$"/>
+	<br>
+	퍼센트 : <fmt:formatNumber value="${price/30000}" type="percent"/> / 
+	퍼센트(그룹핑 x) : <fmt:formatNumber value="${price/30000}" type="percent" groupingUsed="false"/>
+	
+	
 	<c:out value="jstl tag out -> 데이터를 출력합니다." />
 	<br>
 	<c:out value="${members[2].email}" default="<i>이메일 없음</i>"
@@ -64,8 +102,9 @@
 		url4 : ${reurl}
 
 	</h1>
-
-	<c:redirect url="${reurl}" >
+	
+	
+<%-- 	<c:redirect url="${reurl}" >
 		<c:param name="month">7</c:param>
-	</c:redirect>
+	</c:redirect> --%>
 </html>
