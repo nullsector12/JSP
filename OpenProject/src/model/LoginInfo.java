@@ -1,43 +1,48 @@
 package model;
 
 public class LoginInfo {
-	
-	private String uid;
-	private String name;
-	
-	public LoginInfo() {
-		uid= "cool";
-		name ="¿©¸§";
-	}
-	
-	public LoginInfo(String uid, String name) {
-		super();
-		this.uid = uid;
-		this.name = name;
-	}
 
+	private String uid;
+	private String uname;
+	private String email;
+	private String photo;
+
+	public LoginInfo(String uid, String uname, String email, String photo) {
+		this.uid = uid;
+		this.uname = uname;
+		this.email = email;
+		this.photo = photo;
+	}
 
 	public String getUid() {
 		return uid;
 	}
 
-	public void setUid(String uid) {
-		this.uid = uid;
+
+
+	public String getUname() {
+		return uname;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public String getPhoto() {
+		return photo;
 	}
+
+
 
 	@Override
 	public String toString() {
-		return "LoginInfo [uid=" + uid + ", name=" + name + "]";
+		return "LoginInfo [uid=" + uid + ", uname=" + uname + ", email=" + email + ", photo=" + photo + "]";
 	}
 
 	
-	
+
 }

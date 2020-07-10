@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/include/sessionCheck.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 페이지</title>
+<title>게시판</title>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/default.css">
 
@@ -16,7 +17,7 @@
 	<%@ include file="/include/header.jsp" %>
 
 	<div>
-		<h1>회원 가입</h1>
+		<h1>게시판</h1>
 	</div>
 
 	<%@ include file="/include/footer.jsp" %>

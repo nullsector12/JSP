@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Emp"%>
+<%@page import="jdbc.ConnectionProvider" %>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
@@ -44,15 +45,16 @@
 		List<Emp> empList = new ArrayList();
 		
 		// DB Connection 정보
-		String dbUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
+/* 		String dbUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
 		String user = "scott";
-		String pw = "gkskvhqnvhtn123";
+		String pw = "gkskvhqnvhtn123"; */
 		
 		// 2. Connection 생성과 예외 처리
 		
 		try {
 			
-		conn = DriverManager.getConnection(dbUrl, user, pw); 
+		/* conn = DriverManager.getConnection(dbUrl, user, pw); */ 
+		conn = ConnectionProvider.getConnection();
 		
 		// 3. Statement 생성
 		stmt = conn.createStatement();
@@ -81,9 +83,12 @@
 		request.setAttribute("empList", empList);
 	%>
 	
+	<jsp:forward page="empList_View.jsp"/>
+	
+	
 	<%-- ${empList} --%>
 	
-	<table>
+<%-- 	<table>
 		<tr>
 			<th>사원 번호</th>
 			<th>사원 이름</th>
@@ -99,7 +104,7 @@
 			<td>${emp.job}</td>
 		</tr>
 		</c:forEach>
-	</table>
+	</table> --%>
 		
 
 </body>

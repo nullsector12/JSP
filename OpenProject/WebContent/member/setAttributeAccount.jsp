@@ -1,4 +1,4 @@
-<% 
+% 
 	
 	String uid = request.getParameter("userId");
 	String upw = request.getParameter("userPw");
