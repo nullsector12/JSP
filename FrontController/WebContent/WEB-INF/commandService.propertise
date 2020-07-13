@@ -1,7 +1,0 @@
-#Command Propertise
-/=service.IndexService_Impl
-/index=service.IndexService_Impl
-/date=service.DateService_Impl
-/=service.NullxService_Impl
-/greeting=service.GreetingService_Impl
-
