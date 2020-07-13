@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CookieBox {
 	
-	// Cookie ¸ñ·ÏÀ» Map¿¡ ÀúÀåÇØ¼­ °ü¸®
+	// Cookie ëª©ë¡ì„ Mapì— ì €ì¥í•´ì„œ ê´€ë¦¬
 	private Map<String, Cookie> cookieMap = new HashMap<String, Cookie>();
 	
 	public CookieBox(HttpServletRequest request) {
 		
 		Cookie[] cookies = request.getCookies();
 		
-		// ÄíÅ° µ¥ÀÌÅÍ¸¦ Map¿¡ ¸ğµÎ ÀúÀå		
+		// ì¿ í‚¤ ë°ì´í„°ë¥¼ Mapì— ëª¨ë‘ ì €ì¥		
 		for(int i=0; i<cookies.length; i++) {
-			// Map µ¥ÀÌÅÍ ÀúÀå
+			// Map ë°ì´í„° ì €ì¥
 			cookieMap.put(cookies[i].getName(), cookies[i]);
 		}
 		
@@ -43,7 +43,7 @@ public class CookieBox {
 		return cookieMap.get(name) != null;
 	}
 	
-	// ÄíÅ° °´Ã¼ »ı¼º ¸Ş¼­µå
+	// ì¿ í‚¤ ê°ì²´ ìƒì„± ë©”ì„œë“œ
 	public static Cookie createCookie(String name, String value) {
 		return new Cookie(name, value);
 	}
@@ -55,9 +55,9 @@ public class CookieBox {
 			int maxAge) {
 		
 		Cookie cookie = new Cookie(name, value);
-		// °æ·Î ¼³Á¤
+		// ê²½ë¡œ ì„¤ì •
 		cookie.setPath(path);
-		// maxAge ¼³Á¤
+		// maxAge ì„¤ì •
 		cookie.setMaxAge(maxAge);	
 		
 		return cookie;
@@ -73,11 +73,11 @@ public class CookieBox {
 		
 		Cookie cookie = new Cookie(name, value);
 		
-		//µµ¸ŞÀÎ ¼³Á¤
+		//ë„ë©”ì¸ ì„¤ì •
 		cookie.setDomain(domain);		
-		// °æ·Î ¼³Á¤
+		// ê²½ë¡œ ì„¤ì •
 		cookie.setPath(path);
-		// maxAge ¼³Á¤
+		// maxAge ì„¤ì •
 		cookie.setMaxAge(maxAge);	
 		
 		return cookie;

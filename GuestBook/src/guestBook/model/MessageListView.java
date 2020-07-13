@@ -4,149 +4,102 @@ import java.util.List;
 
 public class MessageListView {
 	
-	// ÀüÃ¼ °Ô½Ã¹°ÀÇ ¼ö
+	// ì „ì²´ ê²Œì‹œë¬¼ì˜ ê°œìˆ˜
 	private int messageTotalCount;
-	
-	// ÇöÀç ÆäÀÌÁö ¹øÈ£
+	// í˜„ì¬ í˜ì´ì§€ ë²ˆí˜¸
 	private int currentPageNumber;
-	
-	// ÀÔ·ÂµÈ °Ô½Ã¹° ¸®½ºÆ®
+	// ë©”ì‹œì§€ ë¦¬ìŠ¤íŠ¸
 	private List<Message> messageList;
-	
-	// °Ô½ÃÆÇ ÆäÀÌÁö ÀüÃ¼ ¼ö
+	// ì „ì²´ í˜ì´ì§€ì˜ ê°œìˆ˜
 	private int pageTotalCount;
-	
-	// ÆäÀÌÁö ´ç Ç¥Çö °Ô½Ã¹°ÀÇ ¼ö
-	private int messageCountPerPage;
-	
-	// °Ô½Ã¹° ¸®½ºÆ®ÀÇ ½ÃÀÛ Çà
-	private int StartRow;
-	
-	// °Ô½Ã¹° ¸®½ºÆ®ÀÇ ¸¶Áö¸· Çà
+	// í˜ì´ì§€ ë‹¹ í‘œí˜„ ê²Œì‹œë¬¼ì˜ ê°œìˆ˜
+	private int messageCountPerpage;
+	// ê²Œì‹œë¬¼ì˜ ì‹œì‘ í–‰
+	private int startRow;
+	// ê²Œì‹œë¬¼ì˜ ë§ˆì§€ë§‰ í–‰
 	private int endRow;
 	
-	public MessageListView(List<Message> messageList, int messageTotalCount, int currentPageNumber, int messageCountPerPage,
-			int startRow, int endRow) {
-		this.messageList = messageList;
+	public MessageListView(
+			int messageTotalCount, 
+			int currentPageNumber, 
+			List<Message> messageList,
+			int messageCountPerpage, 
+			int startRow, 
+			int endRow) {
 		this.messageTotalCount = messageTotalCount;
 		this.currentPageNumber = currentPageNumber;
-		this.messageCountPerPage = messageCountPerPage;
-		this.StartRow = startRow;
+		this.messageList = messageList;
+		this.messageCountPerpage = messageCountPerpage;
+		this.startRow = startRow;
 		this.endRow = endRow;
 		calTotalPageCount();
 	}
 	
+	// new MessageListView();
+	
 	private void calTotalPageCount() {
+		
 		if(messageTotalCount == 0) {
-			pageTotalCount = 0;
+			pageTotalCount=0;
 		} else {
-			pageTotalCount = messageTotalCount/messageCountPerPage;
-			if (messageTotalCount%messageCountPerPage > 0) {
+			pageTotalCount = messageTotalCount/messageCountPerpage;
+			if(messageTotalCount%messageCountPerpage>0) {
 				pageTotalCount++;
 			}
 		}
+		
 	}
 
-	/**
-	 * @return the messageTotalCount
-	 */
 	public int getMessageTotalCount() {
 		return messageTotalCount;
 	}
 
-	/**
-	 * @param messageTotalCount the messageTotalCount to set
-	 */
-	public void setMessageTotalCount(int messageTotalCount) {
-		this.messageTotalCount = messageTotalCount;
-	}
-
-	/**
-	 * @return the currentPageNumber
-	 */
 	public int getCurrentPageNumber() {
 		return currentPageNumber;
 	}
 
-	/**
-	 * @param currentPageNumber the currentPageNumber to set
-	 */
-	public void setCurrentPageNumber(int currentPageNumber) {
-		this.currentPageNumber = currentPageNumber;
-	}
-
-	/**
-	 * @return the messageList
-	 */
 	public List<Message> getMessageList() {
 		return messageList;
 	}
 
-	/**
-	 * @param messageList the messageList to set
-	 */
-	public void setMessageList(List<Message> messageList) {
-		this.messageList = messageList;
-	}
-
-	/**
-	 * @return the pageTotalCount
-	 */
 	public int getPageTotalCount() {
 		return pageTotalCount;
 	}
 
-	/**
-	 * @param pageTotalCount the pageTotalCount to set
-	 */
-	public void setPageTotalCount(int pageTotalCount) {
-		this.pageTotalCount = pageTotalCount;
+	public int getMessageCountPerpage() {
+		return messageCountPerpage;
 	}
 
-	/**
-	 * @return the messageCountPerPage
-	 */
-	public int getMessageCountPerPage() {
-		return messageCountPerPage;
-	}
-
-	/**
-	 * @param messageCountPerPage the messageCountPerPage to set
-	 */
-	public void setMessageCountPerPage(int messageCountPerPage) {
-		this.messageCountPerPage = messageCountPerPage;
-	}
-
-	/**
-	 * @return the startRow
-	 */
 	public int getStartRow() {
-		return StartRow;
+		return startRow;
 	}
 
-	/**
-	 * @param startRow the startRow to set
-	 */
-	public void setStartRow(int startRow) {
-		StartRow = startRow;
-	}
-
-	/**
-	 * @return the endRow
-	 */
 	public int getEndRow() {
 		return endRow;
 	}
 
-	/**
-	 * @param endRow the endRow to set
-	 */
-	public void setEndRow(int endRow) {
-		this.endRow = endRow;
+	@Override
+	public String toString() {
+		return "MessageListView [messageTotalCount=" + messageTotalCount + ", currentPageNumber=" + currentPageNumber
+				+ ", messageList=" + messageList + ", pageTotalCount=" + pageTotalCount + ", messageCountPerpage="
+				+ messageCountPerpage + ", startRow=" + startRow + ", endRow=" + endRow + "]";
 	}
 	
 	public boolean isEmpty() {
-		return messageTotalCount == 0;
+		return messageTotalCount==0;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

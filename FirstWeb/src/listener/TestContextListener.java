@@ -9,14 +9,14 @@ public class TestContextListener implements ServletContextListener {
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
-		System.out.println("WAS Á¾·á !!!");
+		System.out.println("WAS ì¢…ë£Œ !!!");
 
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
-		System.out.println("WAS ½ÃÀÛ !!!");
+		System.out.println("WAS ì‹œì‘ !!!");
 		
 		ServletContext context = sce.getServletContext();
 		
@@ -26,7 +26,7 @@ public class TestContextListener implements ServletContextListener {
 		System.out.println(realPath);
 		
 		
-		System.out.println("ÆÄÀÏ ¾÷·Îµå °æ·Î : " + path);
+		System.out.println("íŒŒì¼ ì—…ë¡œë“œ ê²½ë¡œ : " + path);
 		
 	}
 	

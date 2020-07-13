@@ -12,82 +12,87 @@ import guestBook.model.MessageListView;
 
 public class GetMessageListService {
 	
-	
-	private GetMessageListService() {
-		
-	}
-	
-	
+	private GetMessageListService() {}
 	private static GetMessageListService service = new GetMessageListService();
-	
 	public static GetMessageListService getInstance() {
 		return service;
 	}
 	
-	
 	private MessageDAO dao;
 	
-	// ÇÑ ÆäÀÌÁö¿¡ Ãâ·ÂÇÒ °Ô½Ã¹° °³¼ö
-	private static final int  MESSAGE_COUNT_PER_PAGE = 3;
+	// í•œ í˜ì´ì§€ì— í‘œí˜„í•  ë©”ì‹œì§€ì˜ ê°œìˆ˜
+	private final int MESSAGE_COUNT_PER_PAGE = 3;
 	
 	public MessageListView getMessageList(int pageNumber) {
 		
-		// ÆäÀÌÁö ¹øÈ£¸¦ ¹Ş¾Æ¼­ -> ½ÃÀÛÇà°ú ³¡ÇàÀ» ³ªÅ¸³¿
-		// dao => List ·Î Àü´Ş
+		// í˜ì´ì§€ ë²ˆí˜¸ -> ì‹œì‘ í–‰, ë í–‰
+		// dao -> List
 		
-		 Connection conn = null;
-		 MessageListView messageListView = null;
+		Connection conn=null;
+		
+		MessageListView messageListView = null;
 		
 		try {
+			
 			conn = ConnectionProvider.getConnection();
+			
 			dao = MessageDAO.getInstance();
 			
-			// ÆäÀÌÁöÀÇ ÀüÃ¼ ¸Ş½ÃÁö ±¸ÇÏ±â
+			// í˜ì´ì§€ì˜ ì „ì²´ ë©”ì‹œì§€ êµ¬í•˜ê¸°
 			List<Message> messageList = null;
 			
-			// ÀüÃ¼ ÆäÀÌÁöÀÇ °³¼ö
+			// ì „ì²´ ë©”ì‹œì§€ì˜ ê²Œìˆ˜
 			int messageTotalCount = dao.selectTotalCount(conn);
-			
+						
 			int startRow = 0;
 			int endRow = 0;
 			
-			if(messageTotalCount > 0) {
+			if(messageTotalCount>0) {
 				
-				// ½ÃÀÛ Çà, ¸¶Áö¸· Çà
-				startRow = (pageNumber-1)*MESSAGE_COUNT_PER_PAGE +1;
+				// ì‹œì‘ í–‰, ë§ˆì§€ë§ˆ í–‰
+				startRow = (pageNumber-1)*MESSAGE_COUNT_PER_PAGE + 1;
 				endRow = startRow + MESSAGE_COUNT_PER_PAGE -1;
 				
 				messageList = dao.selectMessageList(conn, startRow, endRow);
 				
-			}else {
+				
+			} else {
 				pageNumber = 0;
 				messageList = Collections.emptyList();
 			}
 			
-			messageListView = new MessageListView (
-							messageList, 
-							messageTotalCount, 
-							pageNumber, 
-							MESSAGE_COUNT_PER_PAGE, 
-							startRow, 
-							endRow);
+			messageListView = new MessageListView(
+					messageTotalCount, 
+					pageNumber, 
+					messageList, 
+					MESSAGE_COUNT_PER_PAGE, 
+					startRow, 
+					endRow);
+			
+			
+			
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(conn != null) {
+			
+			if(conn!=null) {
 				try {
 					conn.close();
-				} catch ( SQLException e) {
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			
 		}
 		
 		return messageListView;
+		
 	}
 
+	
 }

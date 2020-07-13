@@ -22,13 +22,13 @@ public class LoginFilter implements Filter {
 			FilterChain chain)
 			throws IOException, ServletException {
 		
-		// 1. ÇöÀç ¼¼¼Ç °´Ã¼¸¦ È®ÀÎ
+		// 1. í˜„ì¬ ì„¸ì…˜ ê°ì²´ë¥¼ í™•ì¸
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 		
-		// ÇöÀç ¼¼¼ÇÀÇ °´Ã¼
+		// í˜„ì¬ ì„¸ì…˜ì˜ ê°ì²´
 		HttpSession session = httpRequest.getSession(false);
 		
-		// ·Î±×ÀÎ À¯¹« È®ÀÎ ÇÏ´Â º¯¼ö
+		// ë¡œê·¸ì¸ ìœ ë¬´ í™•ì¸ í•˜ëŠ” ë³€ìˆ˜
 		boolean login = false;
 		
 		if(session != null ) {
@@ -43,7 +43,7 @@ public class LoginFilter implements Filter {
 			
 		} else {
 			
-			// Æ÷¿öµùÇÒ ÆäÀÌÁö °æ·Î
+			// í¬ì›Œë”©í•  í˜ì´ì§€ ê²½ë¡œ
 			//String path = "/member/sessionLoginForm.jsp";
 			//RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 			//dispatcher.forward(request, response);

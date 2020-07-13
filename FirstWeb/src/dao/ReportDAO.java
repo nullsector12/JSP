@@ -8,7 +8,7 @@ import model.Report;
 
 public class ReportDAO {
 	
-	public ReportDAO() {}
+	private ReportDAO() {}
 	private static ReportDAO dao = new ReportDAO();
 	public static ReportDAO getInstance() {
 		return dao;

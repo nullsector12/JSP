@@ -11,41 +11,47 @@ import model.Emp;
 
 public class EmpDAO {
 	
-	// ¿ÜºÎ¿¡¼­ °´Ã¼ »ı¼º ÇÏ´Â°ÍÀ» ¸·´Â´Ù.
-	// »ı¼ºÀÚÀÇ Á¢±Ù Á¦¾îÁö½ÃÀÚ ÀÌ¿ë : private
+	
+	// ì™¸ë¶€ì—ì„œ ê°ì²´ ìƒì„± í•˜ëŠ”ê²ƒì„ ë§‰ëŠ”ë‹¤.
+	// ìƒì„±ìì˜ ì ‘ê·¼ì œì–´ì§€ì‹œì ì´ìš© : private
 	private EmpDAO() {
-		
 	}
 	
-	// »ç¿ëÇÒ ÀÎ½ºÅÏ½º ÇÏ³ª¸¦ ÂüÁ¶º¯¼ö·Î »ı¼º
-	private static EmpDAO dao = new EmpDAO() ;
+	// ì‚¬ìš©í•  ì¸ìŠ¤í„´ìŠ¤ í•˜ë‚˜ë¥¼ ìƒì„±í•œë‹¤.
+	private static EmpDAO dao = new EmpDAO();
 	
-	// EmpDAO ÀÎ½ºÅÏ½ºÀÇ ÂüÁ¶°ª ¹İÈ¯ÇÏ´Â get ¸Ş¼­µå »ı¼º
-	
+	// EmpDao ì¸ìŠ¤í„´ìŠ¤ì˜ ì°¸ì¡°ê°’ì„ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ
 	public static EmpDAO getInstance() {
 		return dao;
 	}
 	
-	
-	// Connection À» ¸Å°³º¯¼ö ¸¸µç ÀÌÀ¯ : Æ®·£Àè¼Ç Ã³¸®¸¦ À§ÇØ
+
+	// Connection ì„ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ëŠ” ì´ìœ ëŠ” íŠ¸ëœì ì…˜ ì²˜ë¦¬ ë•Œë¬¸.
 	public List<Emp> getEmpList(Connection conn) throws SQLException {
 		
 		Statement stmt = null;
 		ResultSet rs = null;
+
+		List<Emp> empList = new ArrayList();
+
 		
-		List<Emp> empList = new ArrayList<Emp>();
 		
-		// 3. Statement »ı¼º
+		
+		// 3. Statement ìƒì„±
 		stmt = conn.createStatement();
-		
-		String sql = "select * from emp order by ename";
-		
-		// select ÀÇ °á°ú ResultSet °´Ã¼¿¡ ´ã´Â´Ù.
+
+		String sql = "select * from emp order by ename desc";
+
+		// select ì˜ ê²°ê³¼ ResultSet ê°ì²´ì— ë‹´ëŠ”ë‹¤.
 		rs = stmt.executeQuery(sql);
-		
-		// °á°ú Ãâ·Â
-		while(rs.next()) {
-			empList.add(new Emp(rs.getInt("empno"), rs.getString("ename"), rs.getInt("sal"), rs.getString("job")));
+
+		// ê²°ê³¼ ì¶œë ¥
+		while (rs.next()) {
+			empList.add(new Emp(
+					rs.getInt("empno"), 
+					rs.getString("ename"), 
+					rs.getInt("sal"), 
+					rs.getString("job")));
 		}
 		
 		return empList;

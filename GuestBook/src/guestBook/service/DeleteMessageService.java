@@ -8,66 +8,83 @@ import guestBook.jdbc.ConnectionProvider;
 import guestBook.model.Message;
 
 public class DeleteMessageService {
-
-	private DeleteMessageService() {
-	}
-
-	private static DeleteMessageService delete = new DeleteMessageService();
-
+	
+	private DeleteMessageService() {}
+	private static DeleteMessageService service = new DeleteMessageService();
 	public static DeleteMessageService getInstance() {
-		return delete;
+		return service;
 	}
-
+	
 	MessageDAO dao;
-
-	public int deleteMessage(int mid, String upw) {
-
+	
+	public int deleteMessage(int mid, String pw) {
 		int resultCnt = 0;
-
+		
 		Connection conn = null;
 		Message message = null;
-
-		// 1. midÀÇ ¸Ş¼¼Áö Á¸Àç ÇÏ´ÂÁö È®ÀÎ
-		// 2. ¸Ş¼¼Áö°¡ Á¸ÀçÇÏ¸é °´Ã¼ÀÇ upw¿Í »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ upw ºñ±³
-		// 3. ºñ±³ÀÇ °á°ú°¡ °°´Ù¸é midÀÇ ¸Ş¼¼Áö¸¦ »èÁ¦
-
+		
+		// 1. mid ì˜ ë¯¸ì‹œì§€ ì¡´ì¬ í•˜ëŠ”ì§€ í™•ì¸
+		// 2. ë©”ì‹œì§€ê°€ ì¡´ì¬ í•˜ë©´ ê°ì²´ì˜ pw ì‚¬ìš©ìê°€ ì…ë ¥í•œ pw ë¹„êµ
+		// 3. ë¹„êµì˜ ê²°ê³¼ê°€ ê°™ë‹¤ë©´ midì˜ ë¯¸ì‹œì§€ë¥¼ ì‚­ì œ
+		
 		try {
 			conn = ConnectionProvider.getConnection();
 			dao = MessageDAO.getInstance();
-
+			
 			message = dao.selectMessage(conn, mid);
-
-			if (message == null) {
+			
+			if(message == null) {
 				resultCnt = -1;
-				throw new Exception("°Ô½Ã¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				throw new Exception("ì‚­ì œ í•  ë©”ì‹œì§€ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ.");
 			}
-
-			if (!message.getUpw().equals(upw)) {
+			
+			if(!message.getUpw().equals(pw)) {
 				resultCnt = -2;
-				throw new Exception("ÀÔ·ÂÇÏ½Å ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+				throw new Exception("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŒ.");
 			}
-
-			// »èÁ¦
+			
+			// ì‚­ì œ
 			resultCnt = dao.deleteMessage(conn, mid);
-
+			
+						
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-
 		} finally {
-			if (conn != null) {
+			
+			if(conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			
 		}
-
+		
 		return resultCnt;
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

@@ -3,6 +3,7 @@ package service;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class ReportRegService {
 		Connection conn = null;
 
 		try {
+			
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 	
 			if (isMultipart) {
@@ -56,52 +58,51 @@ public class ReportRegService {
 	
 					FileItem item = ite.next();
 	
-					// isFormField() : text value¸¦ °¡Áö´Â input È®ÀÎ
-					if (item.isFormField()) { // type=file ÀÌ¿ÜÀÇ input
-						// ÆÄ¶ó¹ÌÅÍ ÀÌ¸§
+					// isFormField() : text valueë¥¼ ê°€ì§€ëŠ” input í™•ì¸
+					if (item.isFormField()) { // type=file ì´ì™¸ì˜ input
+						// íŒŒë¼ë¯¸í„° ì´ë¦„
 						String paramName = item.getFieldName();
-						// ÆÄ¶ó¹ÌÅÍÀÇ °ª
+						// íŒŒë¼ë¯¸í„°ì˜ ê°’
 						String paramValue = item.getString("utf-8");
 						//System.out.println(paramName + " = " + paramValue);
 						
-						if(paramName.equals("sname")){
+						if(paramName.equals("uname")){
 							sname = paramValue;
 						} else if(paramName.equals("sno")) {
 							sno = paramValue;
 						}
 						
 					} else { // type=file
-						// ÆÄ¶ó¹ÌÅÍ ÀÌ¸§
+						// íŒŒë¼ë¯¸í„° ì´ë¦„
 						String paramName = item.getFieldName();
-						// ÆÄÀÏ ÀÌ¸§
+						// íŒŒì¼ ì´ë¦„
 						String fileName = item.getName();
-						// ÆÄÀÏÀÇ »çÀÌÁî
+						// íŒŒì¼ì˜ ì‚¬ì´ì¦ˆ
 						long file_size = item.getSize();
-						// ÆÄÀÏÀÇ Å¸ÀÔ
+						// íŒŒì¼ì˜ íƒ€ì…
 						String contentType = item.getContentType();
-						// ÀÓ½Ã ¸Ş¸ğ¸®¿¡ ÀúÀå ¿©ºÎ
+						// ì„ì‹œ ë©”ëª¨ë¦¬ì— ì €ì¥ ì—¬ë¶€
 						boolean isInMemory = item.isInMemory();
-						System.out.println("ÇÊµå ÀÌ¸§ : " + paramName);
-						System.out.println("ÆÄÀÏ ÀÌ¸§ : " + fileName);
-						System.out.println("ÆÄÀÏ »çÀÌÁî : " + file_size);
-						System.out.println("ÆÄÀÏ Å¸ÀÔ : " + contentType);
+						System.out.println("í•„ë“œ ì´ë¦„ : " + paramName);
+						System.out.println("íŒŒì¼ ì´ë¦„ : " + fileName);
+						System.out.println("íŒŒì¼ ì‚¬ì´ì¦ˆ : " + file_size);
+						System.out.println("íŒŒì¼ íƒ€ì… : " + contentType);
 	
-						// ¼­¹ö ³»ºÎÀÇ °æ·Î
+						// ì„œë²„ ë‚´ë¶€ì˜ ê²½ë¡œ
 						// String uri = "/file";
 	
 						String uri = request.getSession().getServletContext().getInitParameter("uploadPath");
 	
-						// ½Ã½ºÅÛÀÇ ½ÇÁ¦(Àı´ë) °æ·Î
+						// ì‹œìŠ¤í…œì˜ ì‹¤ì œ(ì ˆëŒ€) ê²½ë¡œ
 						String realPath = request.getSession().getServletContext().getRealPath(uri);
 						// System.out.println(realPath);
 	
 						String newFileName = System.nanoTime() + "_" + fileName;
 	
-						// ¼­¹öÀÇ ÀúÀå¼Ò¿¡ ½ÇÁ¦ ÀúÀå
+						// ì„œë²„ì˜ ì €ì¥ì†Œì— ì‹¤ì œ ì €ì¥
 						File saveFile = new File(realPath, newFileName);
 						item.write(saveFile);
-						System.out.println("Àı´ë°æ·Î : "+realPath);
-						System.out.println("ÀúÀå ¿Ï·á");
+						System.out.println("ì €ì¥ ì™„ë£Œ");
 						
 						filePath = uri+"/"+newFileName;
 	
@@ -110,20 +111,21 @@ public class ReportRegService {
 				}
 				
 				
-				// µ¥ÀÌÅÍ º£ÀÌ½º ÀúÀå 
+				// ë°ì´í„° ë² ì´ìŠ¤ ì €ì¥ 
 				Report report = new Report();
 				report.setSname(sname);
 				report.setSno(sno);
 				report.setReport(filePath);
 				
-				
-				
 				conn = ConnectionProvider.getConnection();
 				
 				dao = ReportDAO.getInstance();
+				
 				resultCnt = dao.insertReport(conn, report);
 				
 				request.setAttribute("report", report);
+				
+				
 	
 			}
 		} catch (FileUploadException e) {
@@ -136,6 +138,15 @@ public class ReportRegService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
 		}
 		

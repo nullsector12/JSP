@@ -10,30 +10,24 @@ import model.Emp;
 
 public class EmpListService {
 	
-	
-	
-	// ½Ì±ÛÅæ ÆĞÅÏ Ã³¸®
-	private EmpListService () {
-		
+	// ì‹±í´í†¤ íŒ¨í„´
+	private EmpListService() {
 	}
-	
 	private static EmpListService service = new EmpListService();
-	
-	public static EmpListService getIncetance() {
+	public static EmpListService getInstance() {
 		return service;
 	}
 	
 	
-	EmpDAO dao;
 	
+	EmpDAO dao ;
 	
-	// ¿¹¿ÜÃ³¸®, Æ®·£Àè¼Ç ¸ğµÎ Ã³¸®
-	public List<Emp> getEmpList () {
-		// »ç¿ëÇÒ DAO ÀÎ½ºÅÏ½º 
+	// ì˜ˆì™¸ì²˜ë¦¬ , íŠ¸ëœì ì…˜
+	public List<Emp> getEmpList(){
+		// ì‚¬ìš©í•  DAO ì¸ìŠ¤í„´ìŠ¤
 		dao = EmpDAO.getInstance();
-		
-		// Connection
-		Connection conn = null;
+		// Connection 
+		Connection conn=null;
 		List<Emp> list = null;
 		
 		try {
@@ -41,10 +35,12 @@ public class EmpListService {
 			list = dao.getEmpList(conn);
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return list;
+		
 	}
 
 }
