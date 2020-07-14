@@ -6,20 +6,35 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
+  <!-- FrontController 등록 -->
+  
   <servlet>
   	<servlet-name>FrontController</servlet-name>
   	<servlet-class>controller.FrontController</servlet-class>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   
+  <!-- FrontController 패턴 설정 -->
+  
   <servlet-mapping>
   	<servlet-name>FrontController</servlet-name>
-  	<url-pattern>/</url-pattern>
+  	<!-- <url-pattern>/</url-pattern> -->
+  	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- CSS 경로 섦정 -->
   
   <servlet-mapping>
   	<servlet-name>default</servlet-name>
   	<url-pattern>/css/*</url-pattern>
   </servlet-mapping>
+  
+  <!-- DBCPInit 등록 : 초기화 -->
+  
+  <servlet>
+  	<servlet-name>DBCPInit</servlet-name>
+  	<servlet-class>jdbc.DBCPInit</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
   
 </web-app>
