@@ -8,18 +8,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/default.css" />
+<title>회원가입</title>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/default.css" />">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 	
-	
-	<div>
-		<h3> 원하는 메뉴를 선택해주세요 </h3> </br>
-		<h4> * 로그인을 하지 않으면 게시판 이용이 불가능합니다.</h4></br>
-		<h5> 비회원이신 분은 방명록을 이용해주세요. </h5>
-	</div>
+		<h1 class="subtitle">회원가입</h1>
+		
+		<c:if test="${result > 0 && member != null}">
+			<div>
+				회원 가입 완료
+			</div>
+			%{member}
+		</c:if>
+		
+		<c:if test="${not(result > 0 && member != null)}">
+			회원 가입 실패
+		</c:if>
+		
+		
+
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
