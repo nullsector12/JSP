@@ -113,6 +113,12 @@ public class Member {
 	public java.util.Date getToDate () { // 사용할 때 = ${member.toDate}
 		return new java.util.Date(regdate.getTime());
 	}
+
+	@Override
+	public String toString() {
+		return "Member [idx=" + idx + ", uid=" + uid + ", upw=" + upw + ", uname=" + uname + ", uphoto=" + uphoto
+				+ ", regdate=" + regdate + "]";
+	}
 	
 	
 }

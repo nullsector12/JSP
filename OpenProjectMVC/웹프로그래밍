@@ -30,3 +30,12 @@
 
 2. 회원 데이터 처리 페이지 (가입 처리)
 	- Service, Dao(insert), view 
+
+3. 아이디 체크
+	= Service, Dao(select), view(html x -> text) Y | N
+
+4. 회원 리스트
+	- Service -> Dao -> Listview -> view
+	
+5. 회원 로그인
+	- Service -> Dao(select) -> view

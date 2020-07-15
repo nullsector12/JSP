@@ -24,10 +24,10 @@
   
   <!-- CSS 경로 섦정 -->
   
-  <servlet-mapping>
+<!--   <servlet-mapping>
   	<servlet-name>default</servlet-name>
   	<url-pattern>/css/*</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
   
   <!-- DBCPInit 등록 : 초기화 -->
   
