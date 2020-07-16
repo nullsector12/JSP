@@ -3,6 +3,7 @@ package controller;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -14,7 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import filter.CharacterEncodingFilter;
+import member.dao.MemberDao;
 import service.NullServiceImpl;
 import service.Service;
 
@@ -158,13 +162,41 @@ public class FrontController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		processRequest(req, resp);
+		
+//		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/login.jsp");
+//		rd.forward(req, resp);
+		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		processRequest(req, resp);
+//		
+//		String uid = req.getParameter("uid");
+//		String upw = req.getParameter("upw");
+//		
+//		MemberDao dao = MemberDao.getInstance();
+//		
+//		try {
+//			int loginResult = dao.loginCheck(uid, upw);
+//			if(loginResult == 1) {
+//				req.setAttribute("loginResult", loginResult);
+//				HttpSession session = req.getSession();
+//				session.setAttribute("loginMember", uid);
+//				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/index.jsp");
+//				rd.forward(req, resp);
+//			} else {
+//				req.setAttribute("loginResult", loginResult);
+//				RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/index.jsp");
+//				rd.forward(req, resp);
+//			}
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+		
 	}
-	
-	
 	
 }

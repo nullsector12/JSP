@@ -14,5 +14,7 @@
 /member/deleteListForm.do=member.service.DeleteListFormServiceImpl
 # 회원 데이터 삭제 처리
 /member/deleteView.do=member.service.DeleteListServiceImpl
-#회원 로그인
-#/member/loginCheck.do=member.service.LoginCheckServiceImpl
+#회원 로그인 페이지
+/member/loginForm.do=member.service.LoginFormServiceImpl
+#회원 로그인 처리
+/member/login.do=member.service.LoginServiceImpl

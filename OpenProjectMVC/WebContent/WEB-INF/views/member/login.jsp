@@ -7,23 +7,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/default.css" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/default.css" />">
+<style>
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
-	
-	
-	<c:if test="${loginMember != null}">
-		${loginMember} 접속 중...
+
+	<c:if test="${sessionId != null}">
+		<script> 
+			alert('이미 로그인 중입니다.'); 
+			location.href = "/index.do";
+		</script>
+	</c:if> 
+	<c:if test="${loginResult == -1 || loginResult == 0}">
+		<script>
+			alert('아이디가 존재하지 않거나 비밀번호가 틀렸습니다.');
+		</script>
 	</c:if>
-	
-	<div>
-		<h3> 원하는 메뉴를 선택해주세요 </h3>
-		<c:if test="${loginMember eq null}">
-			<h4> * 로그인을 하지 않으면 게시판 이용이 불가능합니다.</h4><br>
-			<h5> 비회원이신 분은 방명록을 이용해주세요. </h5>
-		</c:if>
-	</div>
+
 	
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>

@@ -7,12 +7,12 @@
 		
 		<li><a href="${pageContext.request.contextPath}/member/memberRegForm.do">회원가입</a></li>
 		
-		<c:if test="${!empty loginInfo}">
+		<c:if test="${!empty loginMember}">
 		<li><a href="<c:url value="member/logout.jsp"/>">로그아웃</a></li>
 		</c:if>
 		
-		<c:if test="${empty loginInfo}">
-		<li><a href="<c:url value="/member/loginForm.jsp"/>">로그인</a></li>
+		<c:if test="${empty loginMember}">
+		<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 		</c:if>
 		
 		<li><a href="${pageContext.request.contextPath}/member/memberList.do">회원 리스트</a></li>

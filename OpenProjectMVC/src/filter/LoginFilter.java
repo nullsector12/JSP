@@ -50,7 +50,7 @@ public class LoginFilter implements Filter {
 			
 			HttpServletResponse httpResponse = (HttpServletResponse)response;
 			
-			String location = httpRequest.getContextPath()+"/member/sessionLoginForm.jsp";
+			String location = httpRequest.getContextPath()+"/member/LoginForm.do";
 			
 			httpResponse.sendRedirect(location);
 			

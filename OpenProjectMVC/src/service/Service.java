@@ -2,6 +2,9 @@ package service;
 
 
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +16,7 @@ public interface Service {
 		// view page 반환 메서드 : 사용자 요청의 핵심처리
 		// 사용자 요청의 핵심 처리
 		// request 속성에 데이터 저장
-		String getViewPage(HttpServletRequest request, HttpServletResponse response);
+		String getViewPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 		
 
 	}

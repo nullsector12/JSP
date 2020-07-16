@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import jdbc.ConnectionProvider;
 import member.model.Member;
 
 public class MemberDao {
@@ -31,7 +31,7 @@ public class MemberDao {
 		int resultCnt = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO member (uid, upw, uname, uphoto) VALUES (?, ?, ?, ?);";
+		String sql = "INSERT INTO project.member (uid, upw, uname, uphoto) VALUES (?, ?, ?, ?);";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class MemberDao {
 		
 		
 		try {
-			String sql = "select count(*) from member where uid=?";
+			String sql = "select count(*) from project.member where uid=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			
@@ -90,7 +90,7 @@ public class MemberDao {
 		try {
 			
 			
-			String sql = "select * from member limit ?, ?";
+			String sql = "select * from project.member limit ?, ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -135,7 +135,7 @@ public class MemberDao {
 
 			stmt = conn.createStatement();
 
-			String sql = "select count(*) from member";
+			String sql = "select count(*) from project.member";
 
 			rs = stmt.executeQuery(sql);
 
@@ -164,7 +164,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from member where uid=?";
+			String sql = "select * from project.member where uid=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, uid);
@@ -203,7 +203,7 @@ public class MemberDao {
 		int resultCnt = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = "delete from member where uid=?";
+		String sql = "delete from project.member where uid=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -222,6 +222,45 @@ public class MemberDao {
 		return resultCnt;
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int loginCheck(String uid, String upw) throws SQLException {
+		// TODO Auto-generated method stub
+		int result = 0;
+		Connection conn = ConnectionProvider.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from project.member where uid=?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, uid);
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(!rs.getString("upw").equals(upw)) {
+					System.out.println("비밀번호가 일치하지 않습니다.");
+					result = -1;
+				} else if (!rs.getString("uid").equals(uid)) {
+					System.out.println("아이디가 존재하지 않습니다.");
+					result = 0;
+				} else if (rs.getString("uid").equals(uid) && rs.getString("upw").equals(upw)) {
+					System.out.println("로그인 성공");
+					result = 1;
+				}
+			}
+		}finally {
+			if (rs != null) {
+				rs.close();				
+			}
+			if (pstmt != null) {
+				pstmt.close();				
+			}
+		}
+		return result;
+
 	}
 	
 }
