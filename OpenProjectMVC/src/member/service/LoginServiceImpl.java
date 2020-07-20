@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import jdbc.ConnectionProvider;
 import member.dao.MemberDao;
-import member.model.LoginBean;
 import member.model.Member;
 import service.Service;
 
@@ -38,7 +37,7 @@ public class LoginServiceImpl implements Service {
 			conn = ConnectionProvider.getConnection();
 			dao = MemberDao.getInstance();
 			
-			member = dao.loginCheck(uid, upw);
+			member = dao.selectMember(conn, uid);
 			
 			if (member == null) {
 				result = -1;
@@ -82,8 +81,6 @@ public class LoginServiceImpl implements Service {
 			
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/member/login.jsp");
-		rd.forward(request, response);
 		
 		return "/WEB-INF/views/member/login.jsp";
 	}

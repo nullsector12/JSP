@@ -30,7 +30,7 @@ public class MemberListView {
 		
 		if(memberTotalCount == 0) {
 			pageTotalCount=0;
-		} else {
+		} else { 
 			pageTotalCount = memberTotalCount/memberCountPerPage;
 			if(memberTotalCount%memberCountPerPage>0) {
 				pageTotalCount++;

@@ -24,6 +24,7 @@ import service.Service;
 
 public class FrontController extends HttpServlet{
 	
+	// 명령어와 service 객체를 담을 Map을 생성
 	private Map<String, Service> commands = new HashMap<String, Service>();
 
 	@Override
@@ -36,20 +37,21 @@ public class FrontController extends HttpServlet{
 		
 		
 		// 1. 외부 설정 파일의 내용을 메모리의 데이터로 이동 
-		
+		// init 메서드가 실행되면 Properties를 읽어옴
 		Properties prop = new Properties();
 		
 		FileInputStream fis = null;
 		
-		// 설정파일의 웹 경로
+		// 프로퍼티 설정파일의 웹 경로
 		String path = "/WEB-INF/commandService.propertise";
-		// 설정파일의 시스템 절대경로
+		
+		// 프로퍼티 설정파일의 시스템 절대경로
 		String configFile = config.getServletContext().getRealPath(path);
 		
 		
 		try {
 			fis = new FileInputStream(configFile);
-			// 프로퍼티 객체로 파일을 읽어 온다.
+			// 프로퍼티 내장객체로 파일을 읽어 온다.
 			prop.load(fis);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

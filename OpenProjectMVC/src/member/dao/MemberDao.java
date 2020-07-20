@@ -179,9 +179,7 @@ public class MemberDao {
 						rs.getString("uname"),
 						rs.getString("uphoto"),
 						rs.getDate("regdate")
-						);
-
-						
+						);	
 			}
 			
 			} finally {
@@ -224,43 +222,5 @@ public class MemberDao {
 		
 	}
 
-	public int loginCheck(String uid, String upw) throws SQLException {
-		// TODO Auto-generated method stub
-		int result = 0;
-		Connection conn = ConnectionProvider.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = "select * from project.member where uid=?";
-		
-		try {
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, uid);
-			rs= pstmt.executeQuery();
-			
-			if(rs.next()) {
-				if(!rs.getString("upw").equals(upw)) {
-					System.out.println("비밀번호가 일치하지 않습니다.");
-					result = -1;
-				} else if (!rs.getString("uid").equals(uid)) {
-					System.out.println("아이디가 존재하지 않습니다.");
-					result = 0;
-				} else if (rs.getString("uid").equals(uid) && rs.getString("upw").equals(upw)) {
-					System.out.println("로그인 성공");
-					result = 1;
-				}
-			}
-		}finally {
-			if (rs != null) {
-				rs.close();				
-			}
-			if (pstmt != null) {
-				pstmt.close();				
-			}
-		}
-		return result;
-
-	}
 	
 }

@@ -20,10 +20,19 @@
 			location.href = "/index.do";
 		</script>
 	</c:if> 
+	<c:if test="${sessionId = null}">
 	<c:if test="${loginResult == -1 || loginResult == 0}">
 		<script>
 			alert('아이디가 존재하지 않거나 비밀번호가 틀렸습니다.');
+			location.href = "/index.do";
 		</script>
+	</c:if>
+	<c:if test="${loginResult == 1}">
+		<script>
+			alert('로그인에 성공하였습니다.');
+			location.href = "/index.do";
+		</script>
+	</c:if>
 	</c:if>
 
 	

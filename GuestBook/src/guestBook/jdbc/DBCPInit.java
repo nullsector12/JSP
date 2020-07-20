@@ -49,7 +49,7 @@ public class DBCPInit extends HttpServlet {
 			
 			// PoolableConnection을 생성하는 팩토리 생성.
 			// DBCP는 커넥션을 보관할 때 PoolableConnection 을 사용
-			// 실제 커넥션을 담고 있있으며, 커넥션 풀을 관리하는데 필요한 기능을 제공한다.
+			// 실제 커넥션을 담고 있으며, 커넥션 풀을 관리하는데 필요한 기능을 제공한다.
 			// 커넥션을 close하면 종료하지 않고 커넥션 풀에 반환
 			PoolableConnectionFactory poolableConnFactory = new PoolableConnectionFactory(connFactory, null);
 			//커넥션이 유효한지 여부를 검사할 때 사용하는 쿼리를 지정한다.
