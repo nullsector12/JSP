@@ -149,6 +149,7 @@ public class FrontController extends HttpServlet{
 //			service = new NullServiceImpl();
 //		}
 		
+		
 		String page = service.getViewPage(request, response);
 		
 	
